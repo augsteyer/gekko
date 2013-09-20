@@ -3119,3 +3119,12 @@ footer.entry-meta {
 		color: #333;
 	}
 }
+
+
+.translate_div {
+    float: left;
+    line-height: 5px;
+    position: absolute;
+    right: 76px;
+    top: 9px;
+}

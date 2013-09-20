@@ -407,7 +407,7 @@ function twentythirteen_the_attached_image() {
 		'post_type'      => 'attachment',
 		'post_mime_type' => 'image',
 		'order'          => 'ASC',
-		'orderby'        => 'menu_order ID'
+		'orderby'        => 'menu_order ID' 
 	) );
 
 	// If there is more than 1 attachment in a gallery...
@@ -524,3 +524,43 @@ function twentythirteen_customize_preview_js() {
 	wp_enqueue_script( 'twentythirteen-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
 }
 add_action( 'customize_preview_init', 'twentythirteen_customize_preview_js' );
+
+
+ 
+add_action('init', 'oderfood_register');
+ 
+function oderfood_register() {
+ 
+	$labels = array(
+		'name' => _x('OderFood', 'post type general name'),
+		'singular_name' => _x('Oderfood Item', 'post type singular name'),
+		'add_new' => _x('Add New', 'Oderfood item'),
+		'add_new_item' => __('Add New Oderfood Item'),
+		'edit_item' => __('Edit Oderfood Item'),
+		'new_item' => __('New Oderfood Item'),
+		'view_item' => __('View Oderfood Item'),
+		'search_items' => __('Search Oderfood'),
+		'not_found' =>  __('Nothing found'),
+		'not_found_in_trash' => __('Nothing found in Trash'),
+		'parent_item_colon' => ''
+	);
+  
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'query_var' => true,
+		'menu_icon' => get_stylesheet_directory_uri() . '/images/food.png',
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'hierarchical' => false,
+		'menu_position' => null,
+		'supports' => array('title','editor','thumbnail','author','excerpt')
+	  ); 
+ 
+register_post_type( 'oderfood' , $args );
+register_taxonomy("Oderfood Cat", array("oderfood"), array("hierarchical" => true, "label" => "Oderfood Cat", "singular_label" => "Oderfood Cat", "rewrite" => true));
+}
+
+add_action('init', 'oderFood_register');
