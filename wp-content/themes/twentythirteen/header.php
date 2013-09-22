@@ -28,6 +28,38 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
+    
+    
+<!--Content show hide fuctionality-->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="application/javascript">
+$( document ).ready(function() {
+$(".hide_more").hide();
+});
+
+function show_more(a){
+	
+	$(".hide"+a).show('slow');
+	$("#hide_more"+a).show('slow');
+	$("#show_more"+a).hide('slow');
+	$(".show"+a).hide('slow');
+	
+}
+
+function hide_more(a){
+	
+	$(".hide"+a).hide('slow');
+	$("#hide_more"+a).hide('slow');
+	$("#show_more"+a).show('slow');
+	$(".show"+a).show('slow');
+	
+}
+
+</script>
+
+<style>
+.entry-thumbnail img,entry-thumbnail { float:left;}
+</style>
 </head>
  
 <body <?php body_class(); ?>>
@@ -40,7 +72,7 @@
 
 			<div id="navbar" class="navbar">
 				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
-					<h3 class="menu-toggle"><?php _e( 'Menu', 'twentythirteen' ); ?></h3>
+					<h3 class="menu-toggle"><?php _e( 'Menu', 'twentythirteen' ); ?></h3> 
                     
 					<a class="screen-reader-text skip-link" href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentythirteen' ); ?>"><?php _e( 'Skip to content', 'twentythirteen' ); ?></a>
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>

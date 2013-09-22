@@ -2500,6 +2500,7 @@ footer.entry-meta {
 	color: #686758;
 	font-size: 14px;
 	text-align: center;
+	clear:both;
 }
 
 .site-footer .widget-area,
@@ -3127,4 +3128,7 @@ footer.entry-meta {
     position: absolute;
     right: 76px;
     top: 9px;
+}
+.show_more,.hide_more{
+    float: right;
 }
