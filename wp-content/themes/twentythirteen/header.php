@@ -78,7 +78,7 @@ function hide_more(a){
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
                    
 					<div class="translate_div"><?php if(function_exists("transposh_widget")) { transposh_widget(array(), array('title' => 'Translation', 'widget_file' => 'flags/tpw_flags.php')); }?></div>
-					<?php get_search_form(); ?>
+					
 				</nav><!-- #site-navigation -->
 			</div><!-- #navbar -->
 		</header><!-- #masthead -->

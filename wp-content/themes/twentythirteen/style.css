@@ -785,8 +785,9 @@ img.wp-smiley,
 }
 
 .site-main .sidebar-inner {
-	margin: 0 auto;
-	max-width: 1040px;
+  float: right;
+    margin: 0 137px 0 auto;
+    max-width: 276px;
 }
 
 
@@ -2400,6 +2401,7 @@ footer.entry-meta {
 	margin: 0 0 24px;
 	padding: 20px;
 	word-wrap: break-word;
+	float:left;
 }
 
 .widget .widget-title {
@@ -2436,8 +2438,12 @@ footer.entry-meta {
 }
 
 /* Search widget */
-.search-form .search-submit {
-	display: none;
+.search-submit {
+float:right;
+
+height: 34px;
+margin-top: 10px;
+padding: 5px 20px !important;
 }
 
 /* RSS Widget */
@@ -3126,7 +3132,7 @@ footer.entry-meta {
     float: left;
     line-height: 5px;
     position: absolute;
-    right: 76px;
+    right: 19px;
     top: 9px;
 }
 .show_more,.hide_more{

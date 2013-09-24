@@ -556,7 +556,7 @@ function oderfood_register() {
 		'capability_type' => 'post',
 		'hierarchical' => false,
 		'menu_position' => null,
-		'supports' => array('title','editor','thumbnail','author','excerpt')
+		'supports' => array('title','editor','thumbnail','author','excerpt','custom-fields')
 	  ); 
  
 register_post_type( 'oderfood' , $args );
@@ -564,3 +564,15 @@ register_taxonomy("Oderfood Cat", array("oderfood"), array("hierarchical" => tru
 }
 
 add_action('init', 'oderFood_register');
+
+function my_search_form( $form ) {
+    $form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
+    <input type="search" value="' . get_search_query() . '" name="s" id="s"  class="search-field"  placeholder="Search for Dish"/>
+   <input type="submit" value="Search" class="search-submit">
+    </div>
+    </form>';
+
+    return $form;
+}
+
+//add_filter( 'get_search_form', 'my_search_form' );
