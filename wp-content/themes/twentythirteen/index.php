@@ -18,7 +18,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
     
-		<div id="content" class="site-content" role="main" style="width:800px; margin:auto;">
+		<div id="content" class="site-content" role="main" style="width:920px; margin:auto;">
      
 		<?php if ( have_posts() ) : ?>
 
@@ -36,7 +36,11 @@ get_header(); ?>
 			<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
 		</h4>
 		<div class="show<?php echo $i; ?>"><?php echo substr(get_the_excerpt(), 0,100); ?>
-         <div class="post_meta">
+         
+        </div>
+        <div style="display:none;" class="hide<?php echo $i; ?>"><?php the_content();?></div>
+        
+        <div class="post_meta">
          <?php
 		 
 		 $price = get_post_meta( get_the_ID(), 'cf_Price',true ); 
@@ -45,15 +49,29 @@ get_header(); ?>
 		
 
 
-		 $date = get_post_meta( get_the_ID(), 'cf_Address',true );
-		  if($date != ""){ echo "<b>Address :</b>"; $date2 = new DateTime(get_field('date'));
-		echo $date2->format('d F'); // should print 07 August
+		 $address = get_post_meta( get_the_ID(), 'wpuf_post_address',true );
+		 $City = get_post_meta( get_the_ID(), 'wpuf_post_city',true );
+		 $State = get_post_meta( get_the_ID(), 'wpuf_post_state',true );
+		 $Country = get_post_meta( get_the_ID(), 'wpuf_post_state',true );
+		 $Zipcode = get_post_meta( get_the_ID(), 'wpuf_post_country',true );
+		 $wpuf_post_availablity = get_post_meta( get_the_ID(), 'wpuf_post_availablity',true );
+		  $wpuf_post_availablity2 = get_post_meta( get_the_ID(), 'wpuf_post_availablity2',true );
+		   $wpuf_post_availablity3 = get_post_meta( get_the_ID(), 'wpuf_post_availablity3',true );
+			 
+		  if($address != ""){ echo "<b>Address :</b>".$address."&nbsp; &nbsp;";
+		 if($City != ""){ echo " <b>City :</b>  ".$City."&nbsp; &nbsp;";}
+		 if($State != ""){ echo " <b>State :</b>  ".$State."&nbsp; &nbsp;";}
+		 if($Country != ""){ echo " <b>Country :</b> ".$Country."&nbsp; &nbsp;";}
+		 if($Zipcode != ""){ echo " <b>Zipcode :</b>  ".$Zipcode."&nbsp; &nbsp;";} 
+		 if($wpuf_post_availablity != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity."&nbsp; &nbsp;";} 
+		  if($wpuf_post_availablity2 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity3."&nbsp; &nbsp;";} 
+		   if($wpuf_post_availablity3 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity4."&nbsp; &nbsp;";} 
+		 // $date2 = new DateTime(get_field('date'));
+		//echo $date2->format('d F'); // should print 07 August
 		//echo $date->format('h:i A'); // should print 09:30 PM }		 
 		} ?>
         
         </div>
-        </div>
-        <div style="display:none;" class="hide<?php echo $i; ?>"><?php the_content();?></div>
        
           <a class="show_more" id="show_more<?php echo $i; ?>"  href="javascript:void();" onclick="show_more(<?php echo $i; ?>);">Show more</a>
           <a class="hide_more" id="hide_more<?php echo $i; ?>" onclick="hide_more(<?php echo $i; ?>);" href="javascript:void();">Hide</a>
