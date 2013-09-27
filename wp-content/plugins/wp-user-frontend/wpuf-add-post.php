@@ -177,6 +177,82 @@ class WPUF_Add_Post {
                         }
 
                         do_action( 'wpuf_add_post_form_tags', $post_type );
+						 if ( is_user_logged_in() ) {
+						global $current_user;
+						$user_ID = get_current_user_id();
+						
+						$user_info = get_userdata($user_ID);
+						
+		 ?>
+                        <li>
+                            <label for="new-post-title">
+                              Your Address <span class="required">*</span>
+                            </label>
+                            <input class="requiredField" type="text" value="<?php echo $user_info->rpr_address; ?>" name="wpuf_post_address" id="new-post-address">
+                            
+                        </li>
+                            <li>
+                            <label for="new-post-title">
+                              Your City <span class="required">*</span>
+                            </label>
+                            <input class="requiredField" type="text" value="<?php echo $user_info->rpr_city; ?>" name="wpuf_post_city" id="new-post-address">
+                            
+                        </li>
+                            <li>
+                            <label for="new-post-title">
+                              Your State <span class="required">*</span>
+                            </label>
+                            <input class="requiredField" type="text" value="<?php echo $user_info->rpr_state; ?>" name="wpuf_post_state" id="new-post-address">
+                            
+                        </li>
+                            <li>
+                            <label for="new-post-title">
+                              Your Country <span class="required">*</span>
+                            </label>
+                            <input class="requiredField" type="text" value="<?php echo $user_info->rpr_country; ?>" name="wpuf_post_country" id="new-post-address">
+                            
+                        </li>
+                        </li>
+                            <li>
+                            <label for="new-post-title">
+                              Your Zipcode <span class="required">*</span>
+                            </label>
+                            <input class="requiredField" type="text" value="<?php echo $user_info->rpr_zip_code; ?>" name="wpuf_post_zip" id="new-post-zipcode">
+                            
+                        </li>
+                        
+                        
+                         </li>
+                          <h5>    Choose Date (when you want this dish available) </h5>
+                          
+                            <li>
+                 
+                            <label for="new-post-title">
+                              Choose Date 1<span class="required">*</span>
+                            </label>
+                            <input class="requiredField" type="text" value="" name="wpuf_post_availablity" id="availablity_date">
+                            
+                        </li>
+                        
+                          <li>
+                 
+                            <label for="new-post-title">
+                              Choose Date 2 (optional)
+                            </label>
+                            <input type="text" value="" name="wpuf_post_availablity2" id="availablity_date2">
+                            
+                        </li>
+                        
+                          <li>
+                 
+                            <label for="new-post-title">
+                              Choose Date 3 (optional)
+                            </label>
+                            <input type="text" value="" name="wpuf_post_availablity3" id="availablity_date3">
+                            
+                        </li>
+         <?php
+	 }
                         wpuf_build_custom_field_form( 'bottom' );
                         ?>
 
@@ -250,6 +326,7 @@ class WPUF_Add_Post {
         </li>
         <?php
     }
+
 
     /**
      * Prints post expiration date on the form
@@ -454,6 +531,46 @@ class WPUF_Add_Post {
                     add_post_meta( $post_id, $key, $val, true );
                 }
             }
+				
+				if ( !empty( $_POST['wpuf_post_address']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_address', $_POST['wpuf_post_address'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_city']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_city', $_POST['wpuf_post_city'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_state']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_state', $_POST['wpuf_post_state'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_country']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_country', $_POST['wpuf_post_country'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_zip']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_zip', $_POST['wpuf_post_zip'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_availablity']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_availablity', $_POST['wpuf_post_availablity'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_availablity2']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_availablity2', $_POST['wpuf_post_availablity2'], true );
+				 }
+				 
+				 	if ( !empty( $_POST['wpuf_post_availablity3']))
+				 {
+				 add_post_meta( $post_id, 'wpuf_post_availablity3', $_POST['wpuf_post_availablity3'], true );
+				 }
 
             //set post thumbnail if has any
             if ( $attach_id ) {

@@ -13,7 +13,7 @@
     font-weight: bold;
     height: 20px;
     margin: 0;
-    min-width: 130px;
+    min-width: 178px;
     padding: 0 10px 0 0;
     font-size: 12px;
     cursor: pointer;
@@ -75,7 +75,7 @@
 .wpuf-post-form p.description {
     color: #868686;
     margin: 0;
-    padding: 3px 0 3px 140px;
+    padding: 3px 0 3px 175px;
     font-size: 12px;
 }
 
