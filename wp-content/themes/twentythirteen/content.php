@@ -26,7 +26,7 @@
 
 		<div class="entry-meta">
 			<?php twentythirteen_entry_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
+            <?php   edit_post_link2(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 

@@ -602,3 +602,19 @@ if (!current_user_can('administrator') && !is_admin()) {
   show_admin_bar(false);
 }
 }
+
+function edit_post_link2( $link = null, $before = '', $after = '', $id = 0 ) {
+	if ( !$post = get_post( $id ) )
+		return;
+
+	if ( !$url = get_edit_post_link( $post->ID ) )
+		return;
+
+	if ( null === $link )
+		$link = __('Edit Dish');
+
+	$post_type_obj = get_post_type_object( $post->post_type );
+	$link = '<span class="edit-link"><a class="post-edit-link" href="' . get_site_url().'/edit-dishes/?pid='.$post->ID. '&_wpnonce=2815a03fcc">' . $link . '</a></span>';
+	echo $before . apply_filters( 'edit_post_link', $link, $post->ID ) . $after;
+}
+?>

@@ -3142,3 +3142,4 @@ padding: 5px 20px !important;
 .content-area {
     min-height: 430px;
 }
+.ftcalendar-event-time {display:none; }

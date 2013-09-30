@@ -39,7 +39,7 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
 $(function() {
-$( "#availablity_date" ).datepicker();
+$( "#availablity_date" ).datepicker({ dateFormat: 'yy-mm-dd'});
 $( "#availablity_date2" ).datepicker();
 $( "#availablity_date3" ).datepicker();
 
