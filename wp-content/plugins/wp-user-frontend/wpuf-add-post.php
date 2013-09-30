@@ -559,7 +559,11 @@ class WPUF_Add_Post {
 				 
 				 	if ( !empty( $_POST['wpuf_post_availablity']))
 				 {
+					 $start_time =$_POST['wpuf_post_availablity'];
+					 
 				 add_post_meta( $post_id, 'wpuf_post_availablity', $_POST['wpuf_post_availablity'], true );
+				 
+				 mysql_query("INSERT INTO wp_ftcalendar_events (`id`, `calendar_id`, `post_parent`, `start_datetime`, `end_datetime`, `all_day`, `repeating`, `r_start_datetime`, `r_end`, `r_end_datetime`, `r_type`, `r_label`, `r_every`, `r_on`, `r_by` ) VALUES (NULL,3,'$post_id','$start_time','','0','0','$start_time','0','','','','','','' )" );
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_availablity2']))
@@ -571,8 +575,11 @@ class WPUF_Add_Post {
 				 {
 				 add_post_meta( $post_id, 'wpuf_post_availablity3', $_POST['wpuf_post_availablity3'], true );
 				 }
+				 
+				
+	            
 
-            //set post thumbnail if has any
+            //set post thumbnail if has any444
             if ( $attach_id ) {
                 set_post_thumbnail( $post_id, $attach_id );
             }
