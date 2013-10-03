@@ -20,10 +20,11 @@ get_header(); ?>
     
 		<div id="content" class="site-content" role="main" style="width:920px; margin:auto;">
      
-		<?php if ( have_posts() ) : ?>
+		
 
-			<?php query_posts( 'posts_per_page=50&post_type=oderfood' ); ?>
+			<?php query_posts( 'posts_per_page=50&post_type=oderfood&orderby=ID&order=DESC' ); ?>
             <?php $i =0; ?>
+            <?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : the_post();  $i++;?>
 		<article style="float:left; margin:30px 0;width:100%;">
 
@@ -35,7 +36,7 @@ get_header(); ?>
            <h4 class="entry-title">
 			<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
 		</h4>
-		<div class="show<?php echo $i; ?>"><?php echo substr(get_the_excerpt(), 0,100); ?>
+		<div class="show<?php echo $i; ?>"><?php echo substr(get_the_excerpt(), 0,100); ?>...
          
         </div>
         <div style="display:none;" class="hide<?php echo $i; ?>"><?php the_content();?></div>
@@ -52,8 +53,8 @@ get_header(); ?>
 		 $address = get_post_meta( get_the_ID(), 'wpuf_post_address',true );
 		 $City = get_post_meta( get_the_ID(), 'wpuf_post_city',true );
 		 $State = get_post_meta( get_the_ID(), 'wpuf_post_state',true );
-		 $Country = get_post_meta( get_the_ID(), 'wpuf_post_state',true );
-		 $Zipcode = get_post_meta( get_the_ID(), 'wpuf_post_country',true );
+		 $Country = get_post_meta( get_the_ID(), 'wpuf_post_country',true );
+		 $Zipcode = get_post_meta( get_the_ID(), 'wpuf_post_zip',true );
 		 $wpuf_post_availablity = get_post_meta( get_the_ID(), 'wpuf_post_availablity',true );
 		  $wpuf_post_availablity2 = get_post_meta( get_the_ID(), 'wpuf_post_availablity2',true );
 		   $wpuf_post_availablity3 = get_post_meta( get_the_ID(), 'wpuf_post_availablity3',true );
@@ -63,9 +64,9 @@ get_header(); ?>
 		 if($State != ""){ echo " <b>State :</b>  ".$State."&nbsp; &nbsp;";}
 		 if($Country != ""){ echo " <b>Country :</b> ".$Country."&nbsp; &nbsp;";}
 		 if($Zipcode != ""){ echo " <b>Zipcode :</b>  ".$Zipcode."&nbsp; &nbsp;";} 
-		 if($wpuf_post_availablity != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity."&nbsp; &nbsp;";} 
-		  if($wpuf_post_availablity2 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity3."&nbsp; &nbsp;";} 
-		   if($wpuf_post_availablity3 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity4."&nbsp; &nbsp;";} 
+		 if($wpuf_post_availablity != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity."&nbsp;, &nbsp;".$wpuf_post_availablity2."&nbsp; ,&nbsp;".$wpuf_post_availablity3."&nbsp; &nbsp;";} 
+		  //if($wpuf_post_availablity2 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity2."&nbsp; &nbsp;";} 
+		//   if($wpuf_post_availablity3 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity3."&nbsp; &nbsp;";} 
 		 // $date2 = new DateTime(get_field('date'));
 		//echo $date2->format('d F'); // should print 07 August
 		//echo $date->format('h:i A'); // should print 09:30 PM }		 

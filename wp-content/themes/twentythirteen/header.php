@@ -40,8 +40,8 @@
 <script>
 $(function() {
 $( "#availablity_date" ).datepicker({ dateFormat: 'yy-mm-dd'});
-$( "#availablity_date2" ).datepicker();
-$( "#availablity_date3" ).datepicker();
+$( "#availablity_date2" ).datepicker({ dateFormat: 'yy-mm-dd'});
+$( "#availablity_date3" ).datepicker({ dateFormat: 'yy-mm-dd'});
 
 });
 </script>

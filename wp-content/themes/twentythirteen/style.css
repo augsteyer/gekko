@@ -774,6 +774,7 @@ img.wp-smiley,
 
 .site-main {
 	position: relative;
+	min-height:700px;
 }
 
 .site-main .sidebar-container {
@@ -1107,10 +1108,7 @@ ul.nav-menu li:hover > ul,
 	word-wrap: break-word;
 }
 
-.entry-content a,
-.comment-content a {
-	color: #bc360a;
-}
+
 
 .entry-content a:hover,
 .comment-content a:hover {
@@ -3142,4 +3140,8 @@ padding: 5px 20px !important;
 .content-area {
     min-height: 430px;
 }
-.ftcalendar-event-time {display:none; }
+.ftcalendar-event-time,#ftcalendar-legend,#ftcalendar-show-support {display:none; }
+.ftcalendar-event div a:hover { color:#EA9629 !important; text-decoration:underline !important;}
+.ftcalendar-events-div{ display:none;}
+.ftcalendar-event-date, #ftcalendar-table td{ line-height:48px !important; text-align:center !important;}
+.month #ftcalendar-table tr td, .week #ftcalendar-table tr td{line-height:48px !important; text-align:center !important; min-height:48px !important;}

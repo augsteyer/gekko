@@ -17,7 +17,7 @@ if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
                 
                  <h2> Short By </h2>
 				<a href="<?php bloginfo('url');?>/search-results/?orderby=price"><h5>Price</h5></a>
-                <a href="<?php bloginfo('url');?>/search-results/?orderby=day"><h5>day</h5></a>
+                <a href="<?php bloginfo('url');?>/short-by-calerndar/"><h5>day</h5></a>
                 <a href="<?php bloginfo('url');?>/search-results/?orderby=distance"><h5>Distance</h5></a>
 			</div><!-- .widget-area -->
             
