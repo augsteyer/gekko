@@ -511,8 +511,7 @@ if ( ! class_exists( 'FT_CAL_ShortCodes' ) ) {
 			$prev_date 	= date_i18n( 'Y-m-d',  strtotime( "-1 Day", strtotime( $date ) ) );
 			$next_date 	= date_i18n( 'Y-m-d',  strtotime( "+1 Day", strtotime( $date ) ) );
 			
-			$table 	= "<div id='ftcalendar-div' class='ftcalendar ftlargecalendar " . $class . " " . $type . "' style='" . $style . "'>";
-			
+						
 			$table  .= "<input type='hidden' id='largecalendar-type' value='" . $type . "' />";
 			$table  .= "<input type='hidden' id='largecalendar-heading_label' value='" . $heading_label . "' />";
 			$table  .= "<input type='hidden' id='largecalendar-calendars' value='" . $calendars . "' />";
@@ -569,35 +568,18 @@ if ( ! class_exists( 'FT_CAL_ShortCodes' ) ) {
 				$table .= "</div>";
 			
 			}
-			
-			$table  .= "<div id='ftcalendar-nav'>";
-			$table  .= "<span id='ftcalendar-prev'><a class='large-prev' ref='" . $prev_date . "' href='" . $permalink . $sep . "type=day&date=" . $prev_date . "'>" . apply_filters( 'ftcalendar-prev-arrow', '&lArr;' ) . "</a></span>";
-			$table	.= "&nbsp;";
-			$table  .= "<span id='ftcalendar-next'><a class='large-next' ref='" . $next_date . "' href='" . $permalink .  $sep . "type=day&date=" . $next_date . "'>" . apply_filters( 'ftcalendar-next-arrow', '&rArr;' ) . "</a></span>";
-			$table  .= "<span id='ftcalendar-current'>" .  date_i18n( $dateformat, $str_start_date ) . "</span>";
-			
-			if ( 'on' == $types ) {
-				
-				$table .= "<span id='ftcalendar-types'>";
-				$table .= '<a href="' . $permalink . $sep . 'type=day">' . __( 'Day', 'ftcalendar' ) . '</a> ' .
-							'<a href="' . $permalink . $sep . 'type=week">' . __( 'Week', 'ftcalendar' ) . '</a> ' .
-							'<a href="' . $permalink . $sep . 'type=month">' . __( 'Month', 'ftcalendar' ) . '</a>';
-				$table .= "</span>";
-			
-			}
-			
-			$table .= "</div>";
-			$table .= "<table id='ftcalendar-table' class='ftcalendar " . $class . "' style='" . $style . "'>";
+		
+			//$table .= "<table id='ftcalendar-table' class='ftcalendar " . $class . "' style='" . $style . "'>";
 			
 			// Set table headings
 			$headings = $this->get_headings( $heading_label );
 			if ( !empty( $headings ) ) {
 			
 				// Verify GMT Offset later HEREHEREHERE
-				$table .= "<tr>";
-				$table .= "<th id='tz'>GMT" . $current_offset . "</td>";
-				$table .= "<th id='ftcalendar-heading'>" . $headings[$cur_dow] . " " .  date_i18n( $dateformat, $str_start_date ) . "</th>";
-				$table .= "</tr>";
+				//$table .= "<tr>";
+				//$table .= "<th id='tz'>GMT" . $current_offset . "</td>";
+				////table .= "<th id='ftcalendar-heading'>" . $headings[$cur_dow] . " " .  date_i18n( $dateformat, $str_start_date ) . "</th>";
+				//$table .= "</tr>";
 				
 			}
 			
@@ -608,25 +590,82 @@ if ( ! class_exists( 'FT_CAL_ShortCodes' ) ) {
 				foreach ( (array)$cal_entries[$start_date] as $time => $events ) {
 					
 					$duplicate_event_array = array(); //reinitialize for ever day
-					
-					foreach ( (array)$events as $event_id ) {
+					$i = 0;
+					foreach ( (array)$events as $event_id ) { $i++;
+					$post_id = $cal_data_arr[$event_id]->post_parent;
+					$page_data = get_page( $post_id ); 
+			$table .= '<article style="float:left; margin:30px 0;width:100%;">';
+
+	
+		$table .= '<div class="entry-thumbnail">';
+		$thumb = get_the_post_thumbnail($post_id,array(100,100, true));
+		$table .=  $thumb;
+		$table .= '</div>';
+        $table .= '<div class="entry-summary" style="float: left; padding: 0px 13px; max-width: 502px;">
+           <h4 class="entry-title">';
+		   $event_title = get_the_title( $cal_data_arr[$event_id]->post_parent );
+		   
+			$table .= '<a href="'.get_permalink($post_id).'">'.$event_title.'</a>
+		</h4>';
+	  $table .= '<div class="show'.$i.'">'.substr($page_data->post_content, 0,130).'...</div>';
+         
+        
+       $table .= '  <div style="display:none;" class="hide'.$i.'">'.$page_data->post_content.'</div>';
+        
+         $table .= '<div class="post_meta">';
+        
+		 $price = get_post_meta( $post_id, 'cf_Price',true ); 
+		 if($price != ""){  $table .= " <b>Price :</b>  $".$price."&nbsp; &nbsp;";}
+		 
+		 $address = get_post_meta( $post_id, 'wpuf_post_address',true );
+		 $City = get_post_meta( $post_id, 'wpuf_post_city',true );
+		 $State = get_post_meta( $post_id, 'wpuf_post_state',true );
+		 $Country = get_post_meta( $post_id, 'wpuf_post_country',true );
+		 $Zipcode = get_post_meta( $post_id, 'wpuf_post_zip',true );
+		 $wpuf_post_availablity = get_post_meta( $post_id, 'wpuf_post_availablity',true );
+		  $wpuf_post_availablity2 = get_post_meta( $post_id, 'wpuf_post_availablity2',true );
+		   $wpuf_post_availablity3 = get_post_meta( $post_id, 'wpuf_post_availablity3',true );
+			 
+		  if($address != ""){$table .= "<b>Address :</b>".$address."&nbsp; &nbsp;";
+		 if($City != ""){$table .= " <b>City :</b>  ".$City."&nbsp; &nbsp;";}
+		 if($State != ""){$table .= " <b>State :</b>  ".$State."&nbsp; &nbsp;";}
+		 if($Country != ""){$table .=  " <b>Country :</b> ".$Country."&nbsp; &nbsp;";}
+		 if($Zipcode != ""){$table .= " <b>Zipcode :</b>  ".$Zipcode."&nbsp; &nbsp;";} 
+		 if($wpuf_post_availablity != ""){ $table .= " <b>Available :</b>  ".$wpuf_post_availablity."&nbsp;, &nbsp;".$wpuf_post_availablity2."&nbsp; ,&nbsp;".$wpuf_post_availablity3."&nbsp; &nbsp;";} 
+		  //if($wpuf_post_availablity2 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity2."&nbsp; &nbsp;";} 
+		//   if($wpuf_post_availablity3 != ""){ echo " <b>Available :</b>  ".$wpuf_post_availablity3."&nbsp; &nbsp;";} 
+		 // $date2 = new DateTime(get_field('date'));
+		//echo $date2->format('d F'); // should print 07 August
+		//echo $date->format('h:i A'); // should print 09:30 PM }		 
+		} 
+        
+      $table .= '</div>';
+       
+         $table .=  '<a class="show_more" id="show_more'.$i.'"  href="javascript:void();" onclick="show_more('.$i.');">Show more</a>';
+         $table .=  '<a class="hide_more" id="hide_more'.$i.'" onclick="hide_more('.$i.');" href="javascript:void();">Hide</a>';
+  $table .= "</div></article>";
+        
+        
+      
+	
+
 						
-						if ( $cal_data_arr[$event_id]->all_day )
-							$label = __( 'All day', 'ftcalendar' );
-						else
-							$label = date_i18n( $timeformat, strtotime( $cal_data_arr[$event_id]->start_datetime ) ) . ' - '  . date_i18n( $timeformat, strtotime( $cal_data_arr[$event_id]->end_datetime ) );
+	//if ( $cal_data_arr[$event_id]->all_day )
+							//$label = __( 'All day', 'ftcalendar' );
+						//else
+							//$label = date_i18n( $timeformat, strtotime( $cal_data_arr[$event_id]->start_datetime ) ) . ' - '  . date_i18n( $timeformat, strtotime( $cal_data_arr[$event_id]->end_datetime ) );
 							
-						$event_title = get_the_title( $cal_data_arr[$event_id]->post_parent );
-							
-						if ( 'on' == $hide_duplicates && in_array( $label . $event_title, $duplicate_event_array ) )
-							continue;
+						//$event_title = get_the_title( $cal_data_arr[$event_id]->post_parent );
+						//	echo $cal_data_arr[$event_id]->post_parent;
+						//if ( 'on' == $hide_duplicates && in_array( $label . $event_title, $duplicate_event_array ) )
+						//	continue;
 						
-						$table .= "<tr>";
-						$table .= '<td class="ftcalendar-times">' . $label . '</td>';
+						//$table .= "<tr>";
+						//table .= '<td class="ftcalendar-times">' . $label . '</td>';
 						
-						$style = 'color: #' . $ftcal_meta['ftcal-bg-color-' . $cal_data_arr[$event_id]->calendar_id] . ';';
-						$table .= "<td class='ftcalendar-event'><a style='" . $style . "' href='" . get_permalink( $cal_data_arr[$event_id]->post_parent ) . "'>" . $event_title . "</a></td>";
-						$table .= "</tr>";
+						//$style = 'color: #' . $ftcal_meta['ftcal-bg-color-' . $cal_data_arr[$event_id]->calendar_id] . ';';
+						//$table .= "<td class='ftcalendar-event'><a style='" . $style . "' href='" . get_permalink( $cal_data_arr[$event_id]->post_parent ) . "'>" . $event_title . "</a></td>";
+					//	$table .= "</tr>";
 						
 						$duplicate_event_array[] = $label . $event_title;
 					
@@ -648,7 +687,7 @@ if ( ! class_exists( 'FT_CAL_ShortCodes' ) ) {
 				$table .= $this->show_support();
 			
 			$table .= "<div class='ftc-clearboth'></div>";
-			$table .= "</div>";
+		
 			
 			return $table;
 			
@@ -1403,12 +1442,12 @@ if ( ! class_exists( 'FT_CAL_ShortCodes' ) ) {
 				
 				if ( isset( $cal_entries[$fordate] ) ) {
 					
-					$table .= "<span class='thumb-event " . $unmonth_class . "' ref='" . $fordate . "' >$day</span>";
-					$table .= "<div id='" . $fordate . "' class='thumb-event-div'>";
-					$table .= "<div class='thumb-event-header'>" . date_i18n( $dateformat, strtotime( $fordate ) ) . "<span class='thumb-event-close'>x</span></div>";
-					$table .= "<div class='thumb-events'>";
+					$table .= "<a href='http://os4.silvertribe.com/short-by-calerndar/?type=day&date=". $fordate . "'><span class='thumb-event " . $unmonth_class . "' ref='" . $fordate . "' >$day</span></a>";
+					//$table .= "<div id='" . $fordate . "' class='thumb-event-div'>";
+					//$table .= "<div class='thumb-event-header'>" . date_i18n( $dateformat, strtotime( $fordate ) ) . "<span class='thumb-event-close'>x</span></div>";
+					//$table .= "<div class='thumb-events'>";
 					
-					foreach ( (array)$cal_entries[$fordate] as $time => $event_ids ) {
+					 /*?>foreach ( (array)$cal_entries[$fordate] as $time => $event_ids ) {
 						
 						$duplicate_event_array = array(); //reinitialize for ever day	
 						
@@ -1434,11 +1473,11 @@ if ( ! class_exists( 'FT_CAL_ShortCodes' ) ) {
 							$duplicate_event_array[] = $cal_data_arr[$event_id]->start_datetime . $event_title;
 							
 						}
-						
+					
 					}
 					
 					$table .= "</div>";
-					$table .= "</div>";
+					$table .= "</div>";<?php */
 					
 				} else {
 					

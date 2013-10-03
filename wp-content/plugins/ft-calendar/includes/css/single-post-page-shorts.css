@@ -149,8 +149,8 @@
 
 .month #ftcalendar-table tr td, 
 	.week #ftcalendar-table tr td {
-	height: 85px;
-	min-height: 85px;
+	height: 48px;
+	min-height: 48px;
 }
 
 .thumb #ftcalendar-nav {
@@ -227,13 +227,13 @@
 
 .thumb .ftcalendar-event-date span.thumb-event {
 	text-decoration: none;
-	color: #000;
+	color: #CA3C08;
 	font-weight: bold;
 }
 
 .thumb .ftcalendar-event-date span.unmonth {
 	text-decoration: none;
-	color: #666;
+	color: #CA3C08;
 	font-weight: bold;
 }
 
