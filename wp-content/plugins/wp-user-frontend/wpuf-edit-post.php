@@ -231,9 +231,9 @@ class WPUF_Edit_Post {
                         </li>
                             <li>
                             <label for="new-post-title">
-                              Your State <span class="required">*</span>
+                              Your State 
                             </label>
-                            <input class="requiredField" type="text" value="<?php echo  get_post_meta($curpost->ID , 'wpuf_post_state', true ); ?>" name="wpuf_post_state" id="new-post-address">
+                            <input  type="text" value="<?php echo  get_post_meta($curpost->ID , 'wpuf_post_state', true ); ?>" name="wpuf_post_state" id="new-post-address">
                             
                         </li>
                             <li>
@@ -419,43 +419,52 @@ class WPUF_Edit_Post {
 				
 				if ( !empty( $_POST['wpuf_post_address']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_address', $_POST['wpuf_post_address'], true );
+				 update_post_meta( $post_id, 'wpuf_post_address', $_POST['wpuf_post_address']);
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_city']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_city', $_POST['wpuf_post_city'], true );
+				 update_post_meta( $post_id, 'wpuf_post_city', $_POST['wpuf_post_city']);
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_state']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_state', $_POST['wpuf_post_state'], true );
+				 update_post_meta( $post_id, 'wpuf_post_state', $_POST['wpuf_post_state']);
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_country']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_country', $_POST['wpuf_post_country'], true );
+				 update_post_meta( $post_id, 'wpuf_post_country', $_POST['wpuf_post_country']);
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_zip']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_zip', $_POST['wpuf_post_zip'], true );
+				 update_post_meta( $post_id, 'wpuf_post_zip', $_POST['wpuf_post_zip']);
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_availablity']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_availablity', $_POST['wpuf_post_availablity'], true );
+				$start_time =$_POST['wpuf_post_availablity'];
+				 update_post_meta( $post_id, 'wpuf_post_availablity', $start_time);
+				 mysql_query("UPDATE wp_ftcalendar_events  SET `start_datetime`='$start_time' where post_parent='$post_id' and r_by ='1'" );
+
+				 
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_availablity2']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_availablity2', $_POST['wpuf_post_availablity2'], true );
+				  $start_time2 =$_POST['wpuf_post_availablity2'];	 	 
+				 update_post_meta( $post_id, 'wpuf_post_availablity2', $start_time2);
+				  mysql_query("UPDATE wp_ftcalendar_events  SET `start_datetime`='$start_time2' where post_parent='$post_id' and r_by ='2'" );
 				 }
 				 
 				 	if ( !empty( $_POST['wpuf_post_availablity3']))
 				 {
-				 update_post_meta( $post_id, 'wpuf_post_availablity3', $_POST['wpuf_post_availablity3'], true );
+				 $start_time3 =$_POST['wpuf_post_availablity3'];
+				 update_post_meta( $post_id, 'wpuf_post_availablity3', $start_time3);
+				  mysql_query("UPDATE wp_ftcalendar_events  SET `start_datetime`='$start_time3' where post_parent='$post_id' and r_by ='3'" );
 				 }
+				 
 
                 do_action( 'wpuf_edit_post_after_update', $post_id );
             }
