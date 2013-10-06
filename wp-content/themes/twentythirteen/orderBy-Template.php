@@ -31,7 +31,7 @@ get_header(); ?>
     ORDER BY $wpdb->postmeta.meta_value ASC";
 
  $pageposts = $wpdb->get_results($querystr, OBJECT);
-           //  query_posts( 'posts_per_page=50&post_type=oderfood&meta_key=cf_Price&orderby=meta_value&order=ASC' );
+         
 			 
             }elseif($orderby == "DESC")
             {
@@ -47,7 +47,7 @@ get_header(); ?>
     ORDER BY $wpdb->postmeta.meta_value DESC";
 
  $pageposts = $wpdb->get_results($querystr, OBJECT);
-		//	query_posts( 'posts_per_page=50&post_type=oderfood&meta_key=cf_Price&orderby=meta_value&order=DESC' );
+		
             
            }else{
 			   echo'<h4>Dishes By price ascending Order.</h4>';
